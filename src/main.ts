@@ -1,8 +1,21 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
+import axios from 'axios'
+
 import App from './App.vue'
+import { router } from './router'
+import { posts } from './components/factories'
 
-Vue.config.productionTip = false
+// @ts-ignore
+axios.get = (url: string, config: any) => {
+  if (url === '/posts') {
+    return {
+      data: posts
+    }
+  }
+  throw Error(`No mock data for ${url}`)
+}
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+
+const app = createApp(App)
+app.use(router)
+app.mount('#app')
