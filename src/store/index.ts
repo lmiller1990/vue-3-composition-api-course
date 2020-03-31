@@ -1,7 +1,7 @@
 import { reactive, readonly } from 'vue'
 import axios from 'axios'
 
-import { Post } from '../types'
+import { Post, NewUser, User } from '../types'
 
 abstract class Store<T extends Object> {
   protected state: T
@@ -23,15 +23,30 @@ interface PostsState {
   loaded: boolean
 }
 
+interface UsersState {
+  all: Record<string  | number, User>
+  ids: number[]
+  loaded: boolean
+}
 
 interface State {
   posts: PostsState
+  users: UsersState
 }
 
-export class PostsStore extends Store<State> {
+interface State {
+  users: UsersState
+}
+
+export class FluxStore extends Store<State> {
   protected data(): State {
     return {
       posts: {
+        loaded: false,
+        all: {},
+        ids: []
+      },
+      users: {
         loaded: false,
         all: {},
         ids: []
@@ -42,7 +57,6 @@ export class PostsStore extends Store<State> {
   async createPost(post: Post) {
     const { data } = await axios.post<Post>('/posts', post)
     const newPost: Post = {...data, id: Math.max(...this.state.posts.ids) + 1}
-    console.log(newPost)
     this.state.posts.ids.push(newPost.id)
     this.state.posts.all[newPost.id] = newPost
   }
@@ -66,15 +80,21 @@ export class PostsStore extends Store<State> {
   get allPosts(): Post[] {
     return this.state.posts.ids.map(id => this.state.posts.all[id])
   }
+
+  async createUser(newUser: NewUser) {
+    const response = await axios.post<User>('/users', { newUser })
+    this.state.users.all[response.data.id] = response.data
+    this.state.users.ids.push(Math.max(...this.state.users.ids) + 1)
+  }
 }
 
 declare global {
   interface Window {
-    store: PostsStore
+    store: FluxStore
   }
 }
 
-const store = new PostsStore()
+const store = new FluxStore()
 window.store = store
 
 export const useStore = () => store

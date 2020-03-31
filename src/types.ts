@@ -13,4 +13,15 @@ export interface Post {
   tags: string[]
 }
 
+export interface User {
+  id: number
+  username: string
+  isCurrentUser: boolean
+}
 
+
+export interface NewUser {
+  username: string
+  password: string
+  email: string
+}

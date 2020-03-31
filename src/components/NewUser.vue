@@ -30,6 +30,7 @@
         class="button is-primary"
         type="submit"
         :disabled="!formValid"
+        @click="handleSubmit"
         >
         Submit
       </button>
@@ -41,9 +42,11 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive } from 'vue'
+import { useRouter } from '@posva/vue-router-next'
 
 import ValidatorInput from './ValidatorInput.vue'
 import { minLength, maxLength } from './validate'
+import { useStore } from '../store'
 
 type Name = 'username' | 'password' | 'email'
 
@@ -77,13 +80,26 @@ export default defineComponent({
       formValid.value = Object.values(formValidationState).every(x => x)
     }
 
+    const router = useRouter()
+    const store = useStore()
+
+    const handleSubmit = async () => {
+      await store.createUser({
+        username: username.value,
+        password: password.value,
+        email: email.value
+      })
+      router.push('/users/sign_in')
+    }
+
     return {
       usernameRules: [minLength(5), maxLength(10)],
       username,
       password,
       email,
       formValid,
-      handleValidate
+      handleValidate,
+      handleSubmit,
     }
   } 
 })
