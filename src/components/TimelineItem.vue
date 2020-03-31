@@ -3,19 +3,15 @@
     <div class="level">
       <div>
         <div>
-          <a 
+          <router-link 
             :to="link"
             class="link"
           >
             {{ post.title }}
-          </a>
+          </router-link>
         </div>
         <span data-test="author">
           {{ ` ${post.created.format('Do MMM')} by ${author}.` }}
-        </span>
-        <span data-test="likes" @click="handleLike">
-          <i class="far fa-thumbs-up" />
-          {{ post.likes }}
         </span>
       </div>
     </div>
@@ -25,7 +21,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import { Post } from './types'
+import { Post } from '../types'
 
 export default defineComponent({
   name: 'TimelineItem',
@@ -40,14 +36,10 @@ export default defineComponent({
   setup(props, ctx) {
     const link = `/posts/${props.post.id}`
     const author = 'Lachlan'
-    const handleLike = () => {
-      ctx.emit('like', props.post.id)
-    }
 
     return {
       link,
       author,
-      handleLike,
     }
   }
 })

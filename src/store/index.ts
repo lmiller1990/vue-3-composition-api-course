@@ -18,8 +18,9 @@ abstract class Store<T extends Object> {
 }
 
 interface PostsState {
-  all: Record<number, Post>
+  all: Record<string  | number, Post>
   ids: number[]
+  loaded: boolean
 }
 
 
@@ -27,21 +28,29 @@ interface State {
   posts: PostsState
 }
 
-class PostsStore extends Store<State> {
+export class PostsStore extends Store<State> {
   protected data(): State {
     return {
       posts: {
+        loaded: false,
         all: {},
         ids: []
       }
     }
   }
-  
+
+  async createPost(post: Post) {
+    const { data } = await axios.post<Post>('/posts', post)
+    const newPost: Post = {...data, id: Math.max(...this.state.posts.ids) + 1}
+    console.log(newPost)
+    this.state.posts.ids.push(newPost.id)
+    this.state.posts.all[newPost.id] = newPost
+  }
+
   async fetchPosts() {
     const response = await axios.get<Post[]>('/posts')
     const ids: number[] = []
     const all: Record<string, Post> = {}
-    console.log(response)
     for (const post of response.data) {
       if (!ids.includes(post.id)) {
         ids.push(post.id)
@@ -51,6 +60,7 @@ class PostsStore extends Store<State> {
 
     this.state.posts.all = all
     this.state.posts.ids = ids
+    this.state.posts.loaded = true
   }
 
   get allPosts(): Post[] {
@@ -58,6 +68,13 @@ class PostsStore extends Store<State> {
   }
 }
 
-const store = new PostsStore()
+declare global {
+  interface Window {
+    store: PostsStore
+  }
+}
 
-export { store }
+const store = new PostsStore()
+window.store = store
+
+export const useStore = () => store

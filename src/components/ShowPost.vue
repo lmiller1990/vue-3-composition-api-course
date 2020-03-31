@@ -1,8 +1,10 @@
 <template>
+
   <Suspense>
     <template #default>
-      <Timeline />
+      <PostViewer />
     </template>
+
     <template #fallback>
       <div class="columns">
         <div class="column is-one-third"></div>
@@ -12,21 +14,29 @@
         <div class="column is-one-third"></div>
       </div>
     </template>
-  </Suspense>
+  </Suspense> 
+
 </template>
 
 <script lang="ts">
+import moment from 'moment'
 import { defineComponent } from 'vue'
+import { useRouter } from '@posva/vue-router-next'
 
+import PostViewer from './PostViewer.vue'
 import Loader from './Loader.vue'
-import Timeline from './Timeline.vue'
+import { Post } from '../types'
+import { useStore } from '../store'
 
 export default defineComponent({
-  name: 'Home',
-
   components: {
-    Timeline,
+    PostViewer,
     Loader,
-  }
+  },
+
+  setup() {
+    const router = useRouter()
+    const store = useStore()
+  } 
 })
 </script>

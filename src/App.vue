@@ -4,8 +4,6 @@
 
     <section class="section">
       <div class="container">
-        <!-- <HelloWorld /> -->
-        <!-- <Home /> -->
         <router-view />
       </div>
     </section>

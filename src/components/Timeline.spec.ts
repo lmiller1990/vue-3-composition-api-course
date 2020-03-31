@@ -1,10 +1,26 @@
+import flushPromises from 'flush-promises'
 import { mount } from '@lmiller1990/vue-test-utils-next'
 
-import Timeline from './Timeline.vue'
+import Home from './Home.vue'
+import { basePost } from './factories'
+
+jest.mock('../utils', () => ({
+  delay: () => {}
+}))
+
+jest.mock('axios', () => ({
+  get: () => ({
+    data: {
+      posts: [basePost]
+    }
+  })
+}))
 
 describe('Timeline', () => {
   it('changes the tab when filtered', async () => {
-    const wrapper = mount(Timeline)
+    const wrapper = mount(Home)
+    await flushPromises()
+
     const $today = wrapper.find('[data-test="today"]')
     expect($today.classes()).toContain('is-active')
 

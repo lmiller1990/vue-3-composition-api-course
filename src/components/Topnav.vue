@@ -20,9 +20,9 @@
               Log In
             </a>
 
-            <a href="/posts/new" class="button">
+            <router-link to="/posts/new" class="button">
               New Post
-            </a>
+            </router-link>
 
             <button @click="logout" class="button">
               Log Out

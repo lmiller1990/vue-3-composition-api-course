@@ -2,6 +2,7 @@
   <div>
     <PostWriter
       :post="newPost"
+      @submitted="createPost"
     />
   </div> 
 </template>
@@ -9,9 +10,11 @@
 <script lang="ts">
 import moment from 'moment'
 import { defineComponent } from 'vue'
+import { useRouter } from '@posva/vue-router-next'
 
 import PostWriter from './PostWriter.vue'
 import { Post } from '../types'
+import { useStore } from '../store'
 
 export default defineComponent({
   components: {
@@ -20,7 +23,7 @@ export default defineComponent({
 
   setup() {
     const newPost: Post = {
-      id: 0,
+      id: -1,
       title: 'New post...',
       markdown: '# My great post!\nThis is a *really exciting* post.',
       tags: [],
@@ -30,9 +33,16 @@ export default defineComponent({
       likes: 0,
     }
 
+    const router = useRouter()
+    const createPost = async(post: Post) => {
+      const store = useStore()
+      await store.createPost(post)
+      await router.push('/')
+    }
 
     return {
-      newPost
+      newPost,
+      createPost,
     }
   } 
 })

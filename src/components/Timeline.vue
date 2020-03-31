@@ -16,7 +16,6 @@
       v-for="post in posts"
       :key="post.id"
       :post="post"
-      @like="handleLike"
     />
   </nav>
 </template>
@@ -25,13 +24,11 @@
 import moment from 'moment'
 import { defineComponent, ref, computed } from 'vue'
 
-import { posts as mockPosts } from './factories'
-import { store } from '../store/index'
+import { useStore } from '../store'
 import { filterPosts } from './timelineUtils'
 import TimelineItem from './TimelineItem.vue'
 import { TimePeriod, Post } from '../types'
-
-const posts = ref<Post[]>([...mockPosts])
+import { delay } from '../utils'
 
 export default defineComponent({
   name: 'Timeline',
@@ -40,29 +37,26 @@ export default defineComponent({
     TimelineItem
   },
   
-  setup() {
+  async setup() {
     const tabs: TimePeriod[] = ['today', 'this week', 'this month']
     const activeTab = ref<TimePeriod>('today')
 
-    // const allPosts = computed(() => store.allPosts)
-    // store.fetchPosts()
+    const store = useStore()
+    if (!store.getState().posts.loaded) {
+      await delay()
+      await store.fetchPosts()
+    }
+    const filteredPosts = computed(() => filterPosts(store.allPosts, 'this week'))
 
     const setActiveTab = (tab: TimePeriod) => {
       activeTab.value = tab
     }
-    const handleLike = (postId: number) => {
-      const post = posts.value.find(x => x.id === postId)
-      if (post) {
-        post.likes++
-      }
-    }
 
     return {
-      posts: posts,
+      posts: filteredPosts,
       tabs,
       activeTab,
       setActiveTab,
-      handleLike
     }
   }
 })

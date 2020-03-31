@@ -7,7 +7,6 @@ import { basePost } from './factories'
 describe('PostWriter', () => {
   it('converts the post content to markdown on first render', async () => {
     const wrapper = mount(PostWriter, {
-      // localVue: createTestVue(),
       props: {
         post: {
           ...basePost,
@@ -27,7 +26,6 @@ describe('PostWriter', () => {
 
   it('updates the preview when markdown is updated', async () => {
     const wrapper = mount(PostWriter, {
-      // localVue: createTestVue(),
       props: {
         post: {
           ...basePost,
