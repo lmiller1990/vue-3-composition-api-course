@@ -10,8 +10,31 @@
         :rules="usernameRules"
         @validate="handleValidate"
       />
-
+      <ValidatorInput 
+        name="password"
+        type="text"
+        label="password"
+        v-model:value="password"
+        :rules="[]"
+        @validate="handleValidate"
+      />
+      <ValidatorInput 
+        name="email"
+        type="text"
+        label="Email"
+        v-model:value="email"
+        :rules="[]"
+        @validate="handleValidate"
+      />
+      <button 
+        class="button is-primary"
+        type="submit"
+        :disabled="!formValid"
+        >
+        Submit
+      </button>
     </div>
+
     <div class="column is-one-third"></div>
   </div>
 </template>
@@ -40,6 +63,8 @@ export default defineComponent({
 
   setup() {
     const username = ref('')
+    const password = ref('')
+    const email = ref('')
     const formValid = ref(false)
     const formValidationState = reactive<FormValidationState>({
       username: false,
@@ -55,6 +80,9 @@ export default defineComponent({
     return {
       usernameRules: [minLength(5), maxLength(10)],
       username,
+      password,
+      email,
+      formValid,
       handleValidate
     }
   } 

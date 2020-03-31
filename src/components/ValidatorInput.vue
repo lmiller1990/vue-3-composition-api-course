@@ -50,7 +50,7 @@ export default defineComponent({
 
     rules: {
       type: Array as () => Rule[],
-      default: () => []
+      default: []
     }
   },
 
