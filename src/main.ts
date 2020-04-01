@@ -25,6 +25,10 @@ axios.post = (url: string, content: any) => {
     })
   }
 
+  if (url === '/logout') {
+    return
+  }
+
   if (url === '/users') {
     const user: User = {
       username: content.username,

@@ -87,6 +87,28 @@ export class FluxStore extends Store<State> {
     this.state.users.all[id] = { ...response.data, id }
     this.state.users.ids.push(id)
   }
+
+  get authenticated() {
+    return this.state.users.ids.some(id => this.state.users.all[id].isCurrentUser)
+  }
+
+  get currentUser() {
+    const id = this.state.users.ids.find(id => this.state.users.all[id].isCurrentUser)
+    if (!id) {
+      return
+    }
+    return this.state.users.all[id]
+  }
+
+  async logout() {
+    if (!this.currentUser) {
+      return
+    }
+
+    await axios.post('/logout')
+    console.log(this.state.users.all[this.currentUser.id])
+    this.state.users.all[this.currentUser.id].isCurrentUser = false
+  }
 }
 
 declare global {
