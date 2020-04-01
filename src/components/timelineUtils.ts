@@ -10,7 +10,6 @@ export function filterPosts(posts: Post[], timePeriod: TimePeriod): Post[] {
 
   if (timePeriod === 'this week') {
     return posts.filter(post => {
-      console.log(`${post.id}: ${post.title}`)
       return post.created.isSameOrAfter(moment().subtract(7, 'days'))
     })
   }

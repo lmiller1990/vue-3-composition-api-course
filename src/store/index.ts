@@ -82,9 +82,10 @@ export class FluxStore extends Store<State> {
   }
 
   async createUser(newUser: NewUser) {
-    const response = await axios.post<User>('/users', { newUser })
-    this.state.users.all[response.data.id] = response.data
-    this.state.users.ids.push(Math.max(...this.state.users.ids) + 1)
+    const response = await axios.post<User>('/users', newUser)
+    const id = this.state.users.ids.length ? Math.max(...this.state.users.ids) : 1
+    this.state.users.all[id] = { ...response.data, id }
+    this.state.users.ids.push(id)
   }
 }
 

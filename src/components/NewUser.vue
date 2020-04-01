@@ -89,7 +89,7 @@ export default defineComponent({
         password: password.value,
         email: email.value
       })
-      router.push('/users/sign_in')
+      router.push('/')
     }
 
     return {

@@ -12,13 +12,13 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a href="/users/new" class="button">
+            <router-link to="/users/new" class="button">
               Sign Up
-            </a>
+            </router-link>
 
-            <a href="/users/login" class="button">
+            <router-link to="/users/login" class="button">
               Log In
-            </a>
+            </router-link>
 
             <router-link to="/posts/new" class="button">
               New Post
