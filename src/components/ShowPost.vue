@@ -4,7 +4,7 @@
     <template #default>
       <PostViewer />
     </template>
-
+ 
     <template #fallback>
       <div class="columns">
         <div class="column is-one-third"></div>

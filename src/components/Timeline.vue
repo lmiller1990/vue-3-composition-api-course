@@ -46,7 +46,7 @@ export default defineComponent({
       await delay()
       await store.fetchPosts()
     }
-    const filteredPosts = computed(() => filterPosts(store.allPosts, 'this week'))
+    const filteredPosts = computed(() => filterPosts(store.allPosts, activeTab.value))
 
     const setActiveTab = (tab: TimePeriod) => {
       activeTab.value = tab

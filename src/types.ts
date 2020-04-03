@@ -15,6 +15,7 @@ export interface Post {
 
 export interface User {
   id: number
+  email: string
   username: string
   isCurrentUser: boolean
 }

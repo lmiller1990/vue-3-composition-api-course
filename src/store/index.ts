@@ -56,9 +56,18 @@ export class FluxStore extends Store<State> {
 
   async createPost(post: Post) {
     const { data } = await axios.post<Post>('/posts', post)
-    const newPost: Post = {...data, id: Math.max(...this.state.posts.ids) + 1}
+    const newPost: Post = {
+      ...data, 
+      id: Math.max(...this.state.posts.ids) + 1,
+      authorId: this.currentUser?.id!
+    }
     this.state.posts.ids.push(newPost.id)
     this.state.posts.all[newPost.id] = newPost
+  }
+
+  async signin(user: User) {
+    this.state.users.all[user.id] = user
+    this.state.users.ids = Array.from(new Set([...this.state.users.ids, user.id]))
   }
 
   async fetchPosts() {
@@ -79,6 +88,12 @@ export class FluxStore extends Store<State> {
 
   get allPosts(): Post[] {
     return this.state.posts.ids.map(id => this.state.posts.all[id])
+  }
+
+  async updatePost(post: Post) {
+    const response = await axios.put<Post>(`/posts/${post.id}`, post)
+    console.log('ok')
+    this.state.posts.all[post.id] = response.data
   }
 
   async createUser(newUser: NewUser) {

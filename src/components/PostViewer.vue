@@ -2,6 +2,28 @@
   <div class="columns">
     <div class="column"></div>
     <div class="column is-two-thirds">
+      <div class="columns">
+        <div class="column">
+          <div class="is-pulled-right">
+            <RouterLink 
+              v-if="canEdit"
+              class="button is-rounded is-link" 
+              :to="editUrl"
+            >
+              <i class="fas fa-edit" />
+            </RouterLink>
+
+            <div class="button is-rounded is-success">
+              <i class="fas fa-share" />
+            </div>
+
+            <div class="button is-rounded is-info">
+              <i class="far fa-thumbs-up" />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <h1 class="title">{{ post.title }}</h1>
       <div class="post-html" v-html="post.content"></div>
     </div>
@@ -32,7 +54,9 @@ export default defineComponent({
     const post = store.getState().posts.all[postId]
 
     return {
-      post
+      post,
+      editUrl: `/posts/${post.id}/edit`,
+      canEdit: store.currentUser?.id === post.authorId
     }
   }
 })

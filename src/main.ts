@@ -5,7 +5,7 @@ import 'highlight.js/styles/github.css'
 import App from './App.vue'
 import { router } from './router'
 import { posts } from './components/factories'
-import { User, NewUser } from './types'
+import { User } from './types'
 
 // @ts-ignore
 axios.get = (url: string, config: any) => {
@@ -18,7 +18,43 @@ axios.get = (url: string, config: any) => {
 }
 
 // @ts-ignore
+axios.put = (url: string, content: any) => {
+  if (url.match(/posts\/\d+/)) {
+    return Promise.resolve({
+      data: content
+    })
+  }
+  throw Error(`No mock data for ${url}`)
+}
+
+// @ts-ignore
 axios.post = (url: string, content: any) => {
+  if (url === '/login') {
+    if (
+      content.email === 'test@test.com' && 
+      content.password === 'password'
+    ) {
+      return Promise.resolve<{ data: User }>({
+        data: {
+          id: 999,
+          email: 'Lachlan',
+          username: 'Lachlan',
+          isCurrentUser: true
+        }
+      })
+    }
+
+    class E extends Error {
+      code = ''
+      constructor() {
+        super()
+        this.code = '401'
+      }
+    }
+
+    throw new E()
+  }
+
   if (url === '/posts') {
     return Promise.resolve({
       data: content
@@ -32,7 +68,8 @@ axios.post = (url: string, content: any) => {
   if (url === '/users') {
     const user: User = {
       username: content.username,
-      id: -1,
+      email: content.email,
+      id: 999,
       isCurrentUser: true,
     }
 
