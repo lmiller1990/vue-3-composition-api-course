@@ -35,7 +35,7 @@ describe('NewUser', () => {
     }, 600)
   })
 
-  it.only('calls createUser action with correct data', async (done) => {
+  it('calls createUser action with correct data', async (done) => {
     const wrapper = mount(NewUser)
 
     const type = async (input: string, value: string) => {

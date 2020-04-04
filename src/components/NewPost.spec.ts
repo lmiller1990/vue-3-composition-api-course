@@ -1,11 +1,10 @@
-import flushPromises from 'flush-promises'
 import { mount } from '@lmiller1990/vue-test-utils-next'
 
-import { useStore, createInitialState } from '../store'
 import NewPost from './NewPost.vue'
 import { basePost } from './factories'
 
 const mockCreatePost = jest.fn()
+jest.mock('moment', () => jest.fn)
 jest.mock('../store', () => ({
   useStore: () => {
     return {
