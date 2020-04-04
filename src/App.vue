@@ -16,13 +16,11 @@ import { defineComponent } from 'vue'
 
 import Topnav from './components/Topnav.vue'
 import Home from './components/Home.vue'
-import HelloWorld from './components/HelloWorld.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
     Topnav,
-    HelloWorld,
     Home
   }
 });

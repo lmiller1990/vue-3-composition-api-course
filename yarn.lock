@@ -998,10 +998,10 @@
   resolved "https://registry.yarnpkg.com/@lmiller1990/vue-jest-transformer/-/vue-jest-transformer-0.0.2.tgz#7f69b2a78cf5f1137dc78d61234cbb32d950ddd8"
   integrity sha512-F8QmU8L+ITq2U3IFczTYrOFXxIBMgThoE05eryFyMqDgQXrNgQ+le8frGmYkoUTGGb/ObaaVnSxn8E7G55UXMQ==
 
-"@lmiller1990/vue-test-utils-next@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@lmiller1990/vue-test-utils-next/-/vue-test-utils-next-0.0.7.tgz#c0be5cb0cd320a93dcfabb0ce66eeb8fa4dd1fcb"
-  integrity sha512-DE0KHXLxN42LLQ0H6Mm1Wt0EtSbeX7bA0OmUGp4rFGyui7A6EX55znxJJufPTIOa26DUaLVoI7foDqUtppqN8w==
+"@lmiller1990/vue-test-utils-next@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@lmiller1990/vue-test-utils-next/-/vue-test-utils-next-0.0.8.tgz#7689a916a924958001df15f22489c452e942c97c"
+  integrity sha512-hkJrR+/Ce5I7fojOlFGPmHXJq+xf3GMEMnOdi2xGpv3zn1HoWGj6Sn/PyoZzNLf0y1sTouLgV4wXQlAauoEpLw==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"

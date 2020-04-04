@@ -3,6 +3,14 @@ import { Post, User } from '../types'
 
 import { State } from '../store'
 
+export class E extends Error {
+  code = ''
+  constructor() {
+    super()
+    this.code = '401'
+  }
+}
+
 export const createInitialState = (): State => ({
   posts: {
     all: {},

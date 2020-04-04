@@ -10,7 +10,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.8.6",
     "@lmiller1990/vue-jest-transformer": "^0.0.2",
-    "@lmiller1990/vue-test-utils-next": "^0.0.7",
+    "@lmiller1990/vue-test-utils-next": "^0.0.8",
     "@posva/vue-router-next": "^4.0.0-alpha.0",
     "@types/highlight.js": "^9.12.3",
     "@types/jest": "^25.1.3",

@@ -2,7 +2,7 @@
   <div class="columns">
     <div class="column is-one-third"></div>
     <div class="column is-one-third">
-      <form class="form" @submit="handleSubmit">
+      <form class="form" @submit="handleSubmit" data-test="submit">
 
         <div class="field">
           <div class="control">
@@ -20,6 +20,7 @@
               name="email"
               type="text"
               label="Email"
+              data-test="email"
               v-model="email"
             />
           </div>
@@ -41,6 +42,7 @@
               name="password"
               type="password"
               label="password"
+              data-test="password"
               v-model="password"
             />
           </div>
@@ -66,7 +68,8 @@
 </template>
 
 <script lang="ts">
-import axios, { AxiosError } from 'axios'
+import axios  from 'axios'
+import { AxiosError } from 'axios'
 import { defineComponent, ref, reactive } from 'vue'
 import { useRouter } from '@posva/vue-router-next'
 
