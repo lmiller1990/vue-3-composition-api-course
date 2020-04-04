@@ -3,7 +3,7 @@ import { Post, User } from '../types'
 
 import { State } from '../store'
 
-export class E extends Error {
+export class E401 extends Error {
   code = ''
   constructor() {
     super()

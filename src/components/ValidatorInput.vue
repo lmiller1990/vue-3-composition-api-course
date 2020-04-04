@@ -17,7 +17,7 @@
     <span>
       <p v-if="!validity.valid" class="help is-danger">{{ validity.message }}</p>
     </span>
-    </div>
+  </div>
 </template>
 
 <script lang="ts">

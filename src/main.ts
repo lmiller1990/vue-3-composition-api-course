@@ -6,6 +6,7 @@ import App from './App.vue'
 import { router } from './router'
 import { posts } from './components/factories'
 import { User } from './types'
+import { E401 } from './components/factories'
 
 // @ts-ignore
 axios.get = (url: string, config: any) => {
@@ -44,15 +45,7 @@ axios.post = (url: string, content: any) => {
       })
     }
 
-    class E extends Error {
-      code = ''
-      constructor() {
-        super()
-        this.code = '401'
-      }
-    }
-
-    throw new E()
+    throw new E401()
   }
 
   if (url === '/posts') {

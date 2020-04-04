@@ -6,13 +6,13 @@ import {
   UsersState
 } from '../store'
 import Login from './Login.vue'
-import { basePost, baseUser, E } from './factories'
+import { basePost, baseUser, E401 } from './factories'
 
 let mockShouldThrow = false
 jest.mock('axios', () => ({
   post: () => {
     if (mockShouldThrow) {
-      throw new E()
+      throw new E401()
     }
 
     return new Promise(res => res({ data: baseUser }))
