@@ -16,7 +16,7 @@ export const createInitialState = (): State => ({
   }
 })
 
-abstract class Store<T extends Object> {
+abstract class Store {
   protected state: State
 
   constructor(initialState: State = createInitialState()) {
@@ -47,7 +47,7 @@ interface State {
   users: UsersState
 }
 
-export class FluxStore extends Store<State> {
+export class FluxStore extends Store {
   protected data(): State {
     return {
       posts: {

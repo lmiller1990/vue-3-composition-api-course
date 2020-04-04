@@ -24,9 +24,8 @@ export default defineComponent({
     const router = useRouter()
     const id = useRoute().value.params.id as string
 
-    const updatePost = async(post: Post) => {
+    const updatePost = async (post: Post) => {
       await store.updatePost(post)
-      console.log('ok')
       router.push(`/posts/${post.id}`)
     }
 
