@@ -2,38 +2,42 @@
   <div class="columns">
     <div class="column is-one-third"></div>
     <div class="column is-one-third">
-      <ValidatorInput 
-        name="username"
-        type="text"
-        label="Username"
-        v-model:value="username"
-        :rules="usernameRules"
-        @validate="handleValidate"
-      />
-      <ValidatorInput 
-        name="password"
-        type="text"
-        label="password"
-        v-model:value="password"
-        :rules="[]"
-        @validate="handleValidate"
-      />
-      <ValidatorInput 
-        name="email"
-        type="text"
-        label="Email"
-        v-model:value="email"
-        :rules="[]"
-        @validate="handleValidate"
-      />
-      <button 
-        class="button is-primary"
-        type="submit"
-        :disabled="!formValid"
-        @click="handleSubmit"
+      <form class="form" @submit="handleSubmit" data-test="form">
+        <ValidatorInput 
+          name="username"
+          type="text"
+          label="Username"
+          v-model:value="username"
+          :rules="usernameRules"
+          @validate="handleValidate"
+          data-test="username"
+        />
+        <ValidatorInput 
+          name="password"
+          type="text"
+          label="password"
+          v-model:value="password"
+          :rules="[]"
+          @validate="handleValidate"
+          data-test="password"
+        />
+        <ValidatorInput 
+          name="email"
+          type="text"
+          label="Email"
+          v-model:value="email"
+          :rules="[]"
+          @validate="handleValidate"
+          data-test="email"
+        />
+        <button 
+          class="button is-primary"
+          type="submit"
+          :disabled="!formValid"
         >
-        Submit
-      </button>
+          Submit
+        </button>
+      </form>
     </div>
 
     <div class="column is-one-third"></div>
@@ -84,6 +88,9 @@ export default defineComponent({
     const store = useStore()
 
     const handleSubmit = async () => {
+      if (!formValid.value) {
+        return
+      }
       await store.createUser({
         username: username.value,
         password: password.value,

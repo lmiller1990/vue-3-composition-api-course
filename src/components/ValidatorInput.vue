@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import debounce from 'lodash/debounce'
+import { debounce } from 'lodash'
 
 import { Rule, Status, validate } from './validate'
 
