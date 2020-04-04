@@ -21,7 +21,6 @@
 <script lang="ts">
 import moment from 'moment'
 import { defineComponent } from 'vue'
-import { useRouter } from '@posva/vue-router-next'
 
 import PostViewer from './PostViewer.vue'
 import Loader from './Loader.vue'
@@ -32,11 +31,6 @@ export default defineComponent({
   components: {
     PostViewer,
     Loader,
-  },
-
-  setup() {
-    const router = useRouter()
-    const store = useStore()
-  } 
+  }
 })
 </script>
