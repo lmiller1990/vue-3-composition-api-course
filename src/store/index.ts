@@ -42,7 +42,7 @@ export interface UsersState {
   loaded: boolean
 }
 
-interface State {
+export interface State {
   posts: PostsState
   users: UsersState
 }

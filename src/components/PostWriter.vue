@@ -24,7 +24,12 @@
     <div class="columns">
       <div class="column">
         <div class="buttons is-pulled-right">
-          <button class="button is-primary" @click="handleSubmit">Submit</button>
+          <button 
+            data-test="submit"
+            class="button is-primary" @click="handleSubmit"
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>

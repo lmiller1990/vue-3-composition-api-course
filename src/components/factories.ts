@@ -1,10 +1,25 @@
 import moment from 'moment'
 import { Post, User } from '../types'
 
+import { State } from '../store'
+
+export const createInitialState = (): State => ({
+  posts: {
+    all: {},
+    ids: [],
+    loaded: false,
+  },
+  users: { 
+    all: {},
+    ids: [],
+    loaded: false,
+  }
+})
+
 export const basePost: Post = {
   id: 1,
   title: 'My great post',
-  content: ``,
+  content: `<p>Some interesting content</p>\n`,
   markdown: 'Some interesting content',
   created: moment(),
   authorId: 1,
