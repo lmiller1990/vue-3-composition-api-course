@@ -4,7 +4,6 @@ import NewPost from './NewPost.vue'
 import { basePost } from './factories'
 
 const mockCreatePost = jest.fn()
-jest.mock('moment', () => jest.fn)
 jest.mock('../store', () => ({
   useStore: () => {
     return {

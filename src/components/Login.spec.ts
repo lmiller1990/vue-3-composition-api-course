@@ -10,14 +10,12 @@ import { basePost, baseUser, E } from './factories'
 
 let mockShouldThrow = false
 jest.mock('axios', () => ({
-  default: {
-    post: () => {
-      if (mockShouldThrow) {
-        throw new E()
-      }
-
-      return new Promise(res => res({ data: baseUser }))
+  post: () => {
+    if (mockShouldThrow) {
+      throw new E()
     }
+
+    return new Promise(res => res({ data: baseUser }))
   }
 }))
 
@@ -53,7 +51,7 @@ describe('Login', () => {
     expect(mockHistory).toEqual(['/'])
   })
 
-  it('shows an error message', async () => {
+  it.only('shows an error message', async () => {
     mockShouldThrow = true
     const store = useStore()
     const wrapper = mount(Login)
