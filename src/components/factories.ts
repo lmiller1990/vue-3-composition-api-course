@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { Post } from '../types'
+import { Post, User } from '../types'
 
 export const basePost: Post = {
   id: 1,
@@ -40,3 +40,10 @@ export const posts: Post[] = [
     tags: []
   }
 ]
+
+export const baseUser: User = {
+  id: 1,
+  username: 'base user',
+  email: 'test@test.com',
+  isCurrentUser: false
+}

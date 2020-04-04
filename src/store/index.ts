@@ -3,27 +3,40 @@ import axios from 'axios'
 
 import { Post, NewUser, User } from '../types'
 
-abstract class Store<T extends Object> {
-  protected state: T
+export const createInitialState = (): State => ({
+  posts: {
+    all: {},
+    ids: [],
+    loaded: false,
+  },
+  users: { 
+    all: {},
+    ids: [],
+    loaded: false,
+  }
+})
 
-  constructor() {
-    const data = this.data()
-    this.state = reactive<T>(data) as T
+abstract class Store<T extends Object> {
+  protected state: State
+
+  constructor(initialState: State = createInitialState()) {
+    const data = {...this.data(), ...initialState}
+    this.state = reactive<State>(data) as State
   }
 
-  protected abstract data(): T
-  public getState(): T {
-    return readonly(this.state) as T
+  protected abstract data(): State
+  public getState(): State {
+    return readonly(this.state)
   }
 }
 
-interface PostsState {
+export interface PostsState {
   all: Record<string  | number, Post>
   ids: number[]
   loaded: boolean
 }
 
-interface UsersState {
+export interface UsersState {
   all: Record<string  | number, User>
   ids: number[]
   loaded: boolean
@@ -31,10 +44,6 @@ interface UsersState {
 
 interface State {
   posts: PostsState
-  users: UsersState
-}
-
-interface State {
   users: UsersState
 }
 
@@ -66,7 +75,7 @@ export class FluxStore extends Store<State> {
   }
 
   async signin(user: User) {
-    this.state.users.all[user.id] = user
+    this.state.users.all[user.id] = { ...user, isCurrentUser: true }
     this.state.users.ids = Array.from(new Set([...this.state.users.ids, user.id]))
   }
 
@@ -92,7 +101,6 @@ export class FluxStore extends Store<State> {
 
   async updatePost(post: Post) {
     const response = await axios.put<Post>(`/posts/${post.id}`, post)
-    console.log('ok')
     this.state.posts.all[post.id] = response.data
   }
 
@@ -121,7 +129,6 @@ export class FluxStore extends Store<State> {
     }
 
     await axios.post('/logout')
-    console.log(this.state.users.all[this.currentUser.id])
     this.state.users.all[this.currentUser.id].isCurrentUser = false
   }
 }
