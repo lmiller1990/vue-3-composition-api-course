@@ -23,10 +23,10 @@ describe('NewUser', () => {
     const $component = wrapper.find<HTMLDivElement>('[data-test="username"]')
     const $input = $component.find<HTMLInputElement>('input')
       
-    // @ts-ignore
-    await $input.setValue('a')
-    // @ts-ignore
-    await $input.trigger('keyup')
+    if ($input) {
+      await $input.setValue('a')
+      await $input.trigger('keyup')
+    }
 
     await wrapper.find('[data-test="form"]').trigger('submit')
     setTimeout(() => {
