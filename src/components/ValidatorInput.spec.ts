@@ -1,4 +1,4 @@
-import { mount } from '@lmiller1990/vue-test-utils-next'
+import { mount } from '@vue/test-utils'
 
 import { minLength } from './validate'
 import ValidatorInput from './ValidatorInput.vue'

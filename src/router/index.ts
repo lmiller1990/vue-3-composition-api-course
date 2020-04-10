@@ -1,4 +1,4 @@
-import { createHistory, createRouter } from '@posva/vue-router-next'
+import { createHistory, createRouter } from 'vue-router'
 
 import NewPost from '../components/NewPost.vue'
 import ShowPost from '../components/ShowPost.vue'

@@ -71,7 +71,7 @@
 import axios  from 'axios'
 import { AxiosError } from 'axios'
 import { defineComponent, ref, reactive } from 'vue'
-import { useRouter } from '@posva/vue-router-next'
+import { useRouter } from 'vue-router'
 
 import { useStore } from '../store'
 import { User } from '../types'

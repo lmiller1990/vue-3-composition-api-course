@@ -1,11 +1,11 @@
-import { mount } from '@lmiller1990/vue-test-utils-next'
+import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 
 import { State } from '../store'
 import ShowPost from './ShowPost.vue'
 import { basePost, createInitialState } from './factories'
 
-jest.mock('@posva/vue-router-next', () => ({
+jest.mock('vue-router', () => ({
   useRoute: () => ({
     value: { params: { id: basePost.id } }
   })

@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { mount } from '@lmiller1990/vue-test-utils-next'
+import { mount } from '@vue/test-utils'
 
 import Home from './Home.vue'
 import { basePost } from './factories'

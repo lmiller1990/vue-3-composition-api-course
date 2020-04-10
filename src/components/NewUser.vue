@@ -46,7 +46,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive } from 'vue'
-import { useRouter } from '@posva/vue-router-next'
+import { useRouter } from 'vue-router'
 
 import ValidatorInput from './ValidatorInput.vue'
 import { minLength, maxLength } from './validate'

@@ -1,4 +1,4 @@
-import { mount } from '@lmiller1990/vue-test-utils-next'
+import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 
 import { basePost, createInitialState } from './factories'
@@ -25,7 +25,7 @@ jest.mock('../store', () => ({
 }))
 
 let mockHistory: string[] = []
-jest.mock('@posva/vue-router-next', () => ({
+jest.mock('vue-router', () => ({
   useRouter: () => mockHistory,
   useRoute: () => ({
     value: {

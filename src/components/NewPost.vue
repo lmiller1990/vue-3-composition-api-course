@@ -10,7 +10,7 @@
 <script lang="ts">
 import moment from 'moment'
 import { defineComponent } from 'vue'
-import { useRouter } from '@posva/vue-router-next'
+import { useRouter } from 'vue-router'
 
 import PostWriter from './PostWriter.vue'
 import { Post } from '../types'

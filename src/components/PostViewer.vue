@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useRoute } from '@posva/vue-router-next'
+import { useRoute } from 'vue-router'
 
 import { Post } from '../types'
 import { useStore } from '../store'

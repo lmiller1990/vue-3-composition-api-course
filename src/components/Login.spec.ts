@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { mount } from '@lmiller1990/vue-test-utils-next'
+import { mount } from '@vue/test-utils'
 
 import { 
   useStore, 
@@ -20,7 +20,7 @@ jest.mock('axios', () => ({
 }))
 
 let mockHistory: string[] = []
-jest.mock('@posva/vue-router-next', () => ({
+jest.mock('vue-router', () => ({
   useRouter: () => mockHistory,
   useRoute: () => ({
     value: {
