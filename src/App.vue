@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, h } from 'vue'
 
 import Topnav from './components/Topnav.vue'
 import Home from './components/Home.vue'
@@ -21,7 +21,7 @@ export default defineComponent({
   name: 'App',
   components: {
     Topnav,
-    Home
+    Home,
   }
 });
 </script>

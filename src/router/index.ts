@@ -1,4 +1,4 @@
-import { createHistory, createRouter } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import NewPost from '../components/NewPost.vue'
 import ShowPost from '../components/ShowPost.vue'
@@ -7,7 +7,7 @@ import EditPost from '../components/EditPost.vue'
 import NewUser from '../components/NewUser.vue'
 import Login from '../components/Login.vue'
 
-const history = createHistory('')
+const history = createWebHistory()
 const router = createRouter({
   history,
   routes: [
