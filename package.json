@@ -15,7 +15,7 @@
     "@types/marked": "^0.7.3",
     "axios": "^0.19.2",
     "babel-jest": "^25.1.0",
-    "highlight.js": "^9.18.1",
+    "highlight.js": "^10.4.1",
     "jest": "^25.1.0",
     "lodash": "^4.17.15",
     "marked": "^0.8.0",
